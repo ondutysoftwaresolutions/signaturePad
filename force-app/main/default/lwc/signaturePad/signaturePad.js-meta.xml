@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>55.0</apiVersion>
+    <masterLabel>Signature Pad</masterLabel>
+    <description>Signature Pad LWC to be used in record apges, app pages, home pages and flow screens</description>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__RecordPage</target>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <!-- main component variables -->
+            <property
+        name="showTitle"
+        description="Show the Title above the box?"
+        label="Show Title?"
+        type="Boolean"
+        required="true"
+        default="true"
+      />
+            <property
+        name="title"
+        description="Title for the signature box. It can merge current record fields with e.g. {{Record.Name}}."
+        label="Title"
+        type="String"
+        required="false"
+        default="Sign here please"
+      />
+            <property
+        name="showIcon"
+        description="Show the Icon in the title"
+        label="Show Title Icon?"
+        type="Boolean"
+        required="true"
+        default="true"
+      />
+            <property
+        name="iconName"
+        description="Name of the icon to show in the title. Icons: https://www.lightningdesignsystem.com/icons/"
+        label="Icon Name"
+        type="String"
+        required="false"
+        default="utility:signature"
+      />
+
+            <!-- signature box variables -->
+            <property
+        name="boxWidth"
+        description="Width of the box for signing. It supports px and %. If you don't add the type it will default to px. Use % for responsiveness."
+        label="Box Width (px or %)"
+        type="String"
+        required="true"
+        default="100%"
+      />
+            <property
+        name="boxHeight"
+        description="Height of the box for signing. It supports px and %. If you don't add the type it will default to px."
+        label="Box Height (px or %)"
+        type="String"
+        required="true"
+        default="300px"
+      />
+            <property
+        name="boxBorderWidth"
+        description="The width of the border of the box"
+        label="Box Border Width (px)"
+        type="String"
+        required="true"
+        default="2px"
+      />
+            <property
+        name="boxBorderStyle"
+        description="The style of the border of the box"
+        label="Box Border Style"
+        type="String"
+        required="true"
+        default="solid"
+        datasource="none, dotted, dashed, solid, double, groove, ridge, inset, outset"
+      />
+            <property
+        name="boxBorderColor"
+        description="The color of the border of the box. It suppors color name (blue), HEX (#0000FF), RGB (rgb(0, 0, 255)), RGBA (rgb(0, 0, 255, 1), HSL (hsl(240, 100%, 50%)) and HSLA (hsla(240, 100%, 50%, 1)) values."
+        label="Box Border Color"
+        type="String"
+        required="true"
+        default="rgb(136, 135, 135)"
+      />
+            <property
+        name="boxBackground"
+        description="The background color of the box. It suppors color name, HEX, RGB, RGBA, HSL and HSLA values."
+        label="Box background Color"
+        type="String"
+        required="true"
+        default="transparent"
+      />
+
+            <!-- draw lines variables -->
+            <property
+        name="lineStroke"
+        description="The Stroke style for the signature. It supports any color (see boxBorderColor help), gradient or pattern."
+        label="Signature Line Stroke"
+        type="String"
+        required="true"
+        default="blue"
+      />
+            <property
+        name="lineWidth"
+        description="The width (px) of the line for the signature."
+        label="Signature Line Width"
+        type="String"
+        required="true"
+        default="1.5"
+      />
+
+            <!-- buttons variables -->
+            <property
+        name="saveLabel"
+        description="Label for the Save button"
+        label="Save Button Label"
+        type="String"
+        required="true"
+        default="Save"
+      />
+            <property
+        name="saveIcon"
+        description="Icon for the Save button"
+        label="Save Button Icon"
+        type="String"
+        required="true"
+        default="utility:save"
+      />
+            <property
+        name="saveVariant"
+        description="Variant for the Save button"
+        label="Save Button Variant"
+        type="String"
+        required="true"
+        default="brand"
+        datasource="base, neutral, brand, brand-outline, destructive, destructive-text, inverse, success"
+      />
+            <property
+        name="clearLabel"
+        description="Label for the Clear button"
+        label="Clear Button Label"
+        type="String"
+        required="true"
+        default="Clear"
+      />
+            <property
+        name="clearIcon"
+        description="Icon for the Clear button"
+        label="Clear Button Icon"
+        type="String"
+        required="true"
+        default="utility:delete"
+      />
+            <property
+        name="clearVariant"
+        description="Variant for the Clear button"
+        label="Clear Button Variant"
+        type="String"
+        required="true"
+        default="neutral"
+        datasource="base, neutral, brand, brand-outline, destructive, destructive-text, inverse, success"
+      />
+            <property
+        name="buttonsPosition"
+        description="Position of the buttons"
+        label="Button Alignment"
+        type="String"
+        required="true"
+        default="center"
+        datasource="left, center, right"
+      />
+
+            <!-- save behavior variables -->
+            <property
+        name="saveAndLinkToRecord"
+        description="Save the file and create a link to the record specified."
+        label="Save File and Link to Record?"
+        type="Boolean"
+        required="true"
+        default="true"
+      />
+            <property
+        name="fileTitle"
+        description="Title of the file to save. If not specified a generic title will be generated. It can merge current record fields with e.g. {{Record.Name}}."
+        label="Title for the File"
+        type="String"
+        required="false"
+        placeholder="Signature for {{Record.Name}}"
+      />
+            <property
+        name="recordIdToLinkTo"
+        description="The API Field name of the record id field that we want to link the file to. If not specified it will use the current Record Id. It can merge current record fields with e.g. {{Record.AccountId}}"
+        label="Field with Id to Link To"
+        type="String"
+        required="false"
+        placeholder="Empty to use current recordId or {{Record.AccountId}}"
+      />
+            <property
+        name="saveFormat"
+        description="The format for the file to be saved."
+        label="File Format"
+        type="String"
+        required="true"
+        default="image/png"
+        datasource="image/png, image/jpg"
+      />
+            <property
+        name="clearSignatureAfterSave"
+        description="Clear the signature box after a successful save"
+        label="Clear Signature After Successful Save?"
+        type="Boolean"
+        required="true"
+        default="true"
+      />
+
+            <!-- toast variables -->
+            <property
+        name="showToastOnSave"
+        description="Display a toast message after a successful Save"
+        label="Display Toast After Successful Save?"
+        type="Boolean"
+        required="true"
+        default="true"
+      />
+            <property
+        name="toastMessage"
+        description="Message for the toast message when is successful"
+        label="Successful Toast Message"
+        type="String"
+        required="true"
+        default="File successfully saved"
+      />
+        </targetConfig>
+        <targetConfig targets="lightning__AppPage,lightning__HomePage">
+            <!-- main component variables -->
+            <property
+        name="showTitle"
+        description="Show the Title above the box?"
+        label="Show Title?"
+        type="Boolean"
+        required="true"
+        default="true"
+      />
+            <property
+        name="title"
+        description="Title for the signature box."
+        label="Title"
+        type="String"
+        required="false"
+        default="Sign here please"
+      />
+            <property
+        name="showIcon"
+        description="Show the Icon in the title"
+        label="Show Title Icon?"
+        type="Boolean"
+        required="true"
+        default="false"
+      />
+            <property
+        name="iconName"
+        description="Name of the icon to show in the title. Icons: https://www.lightningdesignsystem.com/icons/"
+        label="Icon Name"
+        type="String"
+        required="false"
+        default="utility:signature"
+      />
+
+            <!-- signature box variables -->
+            <property
+        name="boxWidth"
+        description="Width of the box for signing. It supports px and %. If you don't add the type it will default to px. Use % for responsiveness."
+        label="Box Width (px or %)"
+        type="String"
+        required="true"
+        default="100%"
+      />
+            <property
+        name="boxHeight"
+        description="Height of the box for signing. It supports px and %. If you don't add the type it will default to px."
+        label="Box Height (px or %)"
+        type="String"
+        required="true"
+        default="300px"
+      />
+            <property
+        name="boxBorderWidth"
+        description="The width of the border of the box"
+        label="Box Border Width (px)"
+        type="String"
+        required="true"
+        default="2px"
+      />
+            <property
+        name="boxBorderStyle"
+        description="The style of the border of the box"
+        label="Box Border Style"
+        type="String"
+        required="true"
+        default="solid"
+        datasource="none, dotted, dashed, solid, double, groove, ridge, inset, outset"
+      />
+            <property
+        name="boxBorderColor"
+        description="The color of the border of the box. It suppors color name (blue), HEX (#0000FF), RGB (rgb(0, 0, 255)), RGBA (rgb(0, 0, 255, 1), HSL (hsl(240, 100%, 50%)) and HSLA (hsla(240, 100%, 50%, 1)) values."
+        label="Box Border Color"
+        type="String"
+        required="true"
+        default="rgb(136, 135, 135)"
+      />
+            <property
+        name="boxBackground"
+        description="The background color of the box. It suppors color name, HEX, RGB, RGBA, HSL and HSLA values."
+        label="Box background Color"
+        type="String"
+        required="true"
+        default="transparent"
+      />
+
+            <!-- draw lines variables -->
+            <property
+        name="lineStroke"
+        description="The Stroke style for the signature. It supports any color (see boxBorderColor help), gradient or pattern."
+        label="Signature Line Stroke"
+        type="String"
+        required="true"
+        default="blue"
+      />
+            <property
+        name="lineWidth"
+        description="The width (px) of the line for the signature."
+        label="Signature Line Width"
+        type="String"
+        required="true"
+        default="1.5"
+      />
+
+            <!-- buttons variables -->
+            <property
+        name="saveLabel"
+        description="Label for the Save button"
+        label="Save Button Label"
+        type="String"
+        required="true"
+        default="Save"
+      />
+            <property
+        name="saveIcon"
+        description="Icon for the Save button"
+        label="Save Button Icon"
+        type="String"
+        required="true"
+        default="utility:save"
+      />
+            <property
+        name="saveVariant"
+        description="Variant for the Save button"
+        label="Save Button Variant"
+        type="String"
+        required="true"
+        default="brand"
+        datasource="base, neutral, brand, brand-outline, destructive, destructive-text, inverse, success"
+      />
+            <property
+        name="clearLabel"
+        description="Label for the Clear button"
+        label="Clear Button Label"
+        type="String"
+        required="true"
+        default="Clear"
+      />
+            <property
+        name="clearIcon"
+        description="Icon for the Clear button"
+        label="Clear Button Icon"
+        type="String"
+        required="true"
+        default="utility:delete"
+      />
+            <property
+        name="clearVariant"
+        description="Variant for the Clear button"
+        label="Clear Button Variant"
+        type="String"
+        required="true"
+        default="neutral"
+        datasource="base, neutral, brand, brand-outline, destructive, destructive-text, inverse, success"
+      />
+            <property
+        name="buttonsPosition"
+        description="Position of the buttons"
+        label="Button Alignment"
+        type="String"
+        required="true"
+        default="center"
+        datasource="left, center, right"
+      />
+
+            <!-- save behavior variables -->
+            <property
+        name="fileTitle"
+        description="Title of the file to save. If not specified a generic title will be generated."
+        label="Title for the File"
+        type="String"
+        required="false"
+        placeholder="Signature"
+      />
+            <property
+        name="saveFormat"
+        description="The format for the file to be saved."
+        label="File Format"
+        type="String"
+        required="true"
+        default="image/png"
+        datasource="image/png, image/jpg"
+      />
+            <property
+        name="clearSignatureAfterSave"
+        description="Clear the signature box after a successful save"
+        label="Clear Signature After Successful Save?"
+        type="Boolean"
+        required="true"
+        default="true"
+      />
+
+            <!-- toast variables -->
+            <property
+        name="showToastOnSave"
+        description="Display a toast message after a successful Save"
+        label="Display Toast After Successful Save?"
+        type="Boolean"
+        required="true"
+        default="true"
+      />
+            <property
+        name="toastMessage"
+        description="Message for the toast message when is successful"
+        label="Successful Toast Message"
+        type="String"
+        required="true"
+        default="File successfully saved"
+      />
+        </targetConfig>
+        <targetConfig targets="lightning__FlowScreen">
+            <!-- flow only input variables -->
+            <property
+        name="isRequired"
+        description="Is the Signature Required?"
+        label="Required?"
+        type="Boolean"
+        required="true"
+        default="true"
+        role="inputOnly"
+      />
+            <property
+        name="showSaveButton"
+        description="Show the Save button or not"
+        label="Show Save button?"
+        type="Boolean"
+        required="true"
+        default="false"
+        role="inputOnly"
+      />
+            <property
+        name="showLabelAndIconButtons"
+        description="Show Label and Icon in the buttons or just the icon?"
+        label="Show Label and Icon Buttons?"
+        type="Boolean"
+        required="true"
+        default="false"
+        role="inputOnly"
+      />
+            <property
+        name="requiredMessage"
+        description="Required message to display"
+        label="Required Message"
+        type="String"
+        required="true"
+        default="The signature is required"
+        role="inputOnly"
+      />
+
+            <!-- main component variables -->
+            <property
+        name="showTitle"
+        description="Show the Title above the box?"
+        label="Show Title?"
+        type="Boolean"
+        required="true"
+        default="true"
+        role="inputOnly"
+      />
+            <property
+        name="title"
+        description="Title for the signature box."
+        label="Title"
+        type="String"
+        required="false"
+        default="Sign here please"
+        role="inputOnly"
+      />
+            <property
+        name="showIcon"
+        description="Show the Icon in the title"
+        label="Show Title Icon?"
+        type="Boolean"
+        required="true"
+        default="true"
+        role="inputOnly"
+      />
+            <property
+        name="iconName"
+        description="Name of the icon to show in the title. Icons: https://www.lightningdesignsystem.com/icons/"
+        label="Icon Name"
+        type="String"
+        required="false"
+        default="utility:signature"
+        role="inputOnly"
+      />
+
+            <!-- signature box variables -->
+            <property
+        name="boxWidth"
+        description="Width of the box for signing. It supports px and %. If you don't add the type it will default to px. Use % for responsiveness."
+        label="Box Width (px or %)"
+        type="String"
+        required="true"
+        default="100%"
+        role="inputOnly"
+      />
+            <property
+        name="boxHeight"
+        description="Height of the box for signing. It supports px and %. If you don't add the type it will default to px."
+        label="Box Height (px or %)"
+        type="String"
+        required="true"
+        default="300px"
+        role="inputOnly"
+      />
+            <property
+        name="boxBorderWidth"
+        description="The width of the border of the box"
+        label="Box Border Width (px)"
+        type="String"
+        required="true"
+        default="2px"
+        role="inputOnly"
+      />
+            <property
+        name="boxBorderStyle"
+        description="The style of the border of the box (none, dotted, dashed, solid, double, groove, ridge, inset or outset)."
+        label="Box Border Style"
+        type="String"
+        required="true"
+        default="solid"
+        role="inputOnly"
+      />
+            <property
+        name="boxBorderColor"
+        description="The color of the border of the box. It suppors color name (blue), HEX (#0000FF), RGB (rgb(0, 0, 255)), RGBA (rgb(0, 0, 255, 1), HSL (hsl(240, 100%, 50%)) and HSLA (hsla(240, 100%, 50%, 1)) values."
+        label="Box Border Color"
+        type="String"
+        required="true"
+        default="rgb(136, 135, 135)"
+        role="inputOnly"
+      />
+            <property
+        name="boxBackground"
+        description="The background color of the box. It suppors color name, HEX, RGB, RGBA, HSL and HSLA values."
+        label="Box background Color"
+        type="String"
+        required="true"
+        default="transparent"
+        role="inputOnly"
+      />
+
+            <!-- draw lines variables -->
+            <property
+        name="lineStroke"
+        description="The Stroke style for the signature. It supports any color (see boxBorderColor help), gradient or pattern."
+        label="Signature Line Stroke"
+        type="String"
+        required="true"
+        default="blue"
+        role="inputOnly"
+      />
+            <property
+        name="lineWidth"
+        description="The width (px) of the line for the signature."
+        label="Signature Line Width"
+        type="String"
+        required="true"
+        default="1.5"
+        role="inputOnly"
+      />
+
+            <!-- buttons variables -->
+            <property
+        name="saveLabel"
+        description="Label for the Save button"
+        label="Save Button Label"
+        type="String"
+        required="false"
+        default="Save"
+        role="inputOnly"
+      />
+            <property
+        name="saveIcon"
+        description="Icon for the Save button"
+        label="Save Button Icon"
+        type="String"
+        required="false"
+        default="utility:save"
+        role="inputOnly"
+      />
+            <property
+        name="saveVariant"
+        description="Variant for the Save button (base, neutral, brand, brand-outline, destructive, destructive-text, inverse or success)."
+        label="Save Button Variant"
+        type="String"
+        required="false"
+        default="brand"
+        role="inputOnly"
+      />
+            <property
+        name="clearLabel"
+        description="Label for the Clear button"
+        label="Clear Button Label"
+        type="String"
+        required="true"
+        default="Clear"
+        role="inputOnly"
+      />
+            <property
+        name="clearIcon"
+        description="Icon for the Clear button"
+        label="Clear Button Icon"
+        type="String"
+        required="true"
+        default="utility:delete"
+        role="inputOnly"
+      />
+            <property
+        name="clearVariant"
+        description="Variant for the Clear button (base, neutral, brand, brand-outline, destructive, destructive-text, inverse or success)."
+        label="Clear Button Variant"
+        type="String"
+        required="true"
+        default="neutral"
+        role="inputOnly"
+      />
+            <property
+        name="buttonsPosition"
+        description="Position of the buttons (left, center or right)."
+        label="Button Alignment"
+        type="String"
+        required="true"
+        default="left"
+        role="inputOnly"
+      />
+
+            <!-- save behavior variables -->
+            <property
+        name="fileTitle"
+        description="Title of the file to save. If not specified a generic title will be generated."
+        label="Title for the File"
+        type="String"
+        required="false"
+        role="inputOnly"
+      />
+            <property
+        name="saveFormat"
+        description="The format for the file to be saved (image/png or image/jpg)."
+        label="File Format"
+        type="String"
+        required="true"
+        default="image/png"
+        role="inputOnly"
+      />
+            <property
+        name="clearSignatureAfterSave"
+        description="Clear the signature box after a successful save"
+        label="Clear Signature After Successful Save?"
+        type="Boolean"
+        required="true"
+        default="true"
+        role="inputOnly"
+      />
+            <property
+        name="saveAndLinkToRecord"
+        description="Save the file and create a link to the record specified."
+        label="Save File and Link to Record?"
+        type="Boolean"
+        required="true"
+        default="false"
+        role="inputOnly"
+      />
+            <property
+        name="recordIdToLinkTo"
+        description="The API Field name of the record id field that we want to link the file to."
+        label="Field with Id to Link To"
+        type="String"
+        required="false"
+        role="inputOnly"
+      />
+
+            <!-- flow only output variables -->
+            <property
+        name="saveSuccess"
+        description="Was the save action a success?"
+        label="Is Success?"
+        type="Boolean"
+        role="outputOnly"
+      />
+            <property
+        name="errorMessage"
+        description="Error message when saving (if any)"
+        label="Error Message"
+        type="String"
+        role="outputOnly"
+      />
+            <property
+        name="contentDocumentId"
+        description="The Id of the Content Document Record that was created (if required)."
+        label="Content Document Id"
+        type="String"
+        role="outputOnly"
+      />
+            <property
+        name="contentVersionId"
+        description="The Id of the Content Version Record that was created (if required)."
+        label="Content Version Id"
+        type="String"
+        role="outputOnly"
+      />
+            <property
+        name="contentDocumentLinkId"
+        description="The Id of the Content Document Link Record that was created (if required)."
+        label="Content Document Link Id"
+        type="String"
+        role="outputOnly"
+      />
+            <property
+        name="fileBase64"
+        description="The Base64 encoded string of the file with the signature"
+        label="Signature in Base64 Encoded String"
+        type="String"
+        role="outputOnly"
+      />
+            <property
+        name="fileExtension"
+        description="Extension of the file (png or jpg)."
+        label="File Extension"
+        type="String"
+        role="outputOnly"
+      />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

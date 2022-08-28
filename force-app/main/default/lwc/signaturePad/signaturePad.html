@@ -1,0 +1,73 @@
+<template>
+  <lightning-card>
+    <template if:true={errorGetting}>
+      <span class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+        {errorGetting}
+      </span>
+    </template>
+    <template if:false={errorGetting}>
+      <template if:true={showTitle}>
+        <div class="slds-grid slds-m-bottom--x-small slds-wrap" style="align-items: center">
+          <template if:true={showIcon}>
+            <lightning-icon icon-name={iconName} size="small"></lightning-icon>
+          </template>
+          <div class="slds-m-left--x-small slds-text-heading--small">{titleToShow}</div>
+        </div>
+      </template>
+      <div class="body">
+        <div class="slds-m-bottom--xxx-small slds-text-align--center">
+          <c-signature-pad-canvas
+            box-style={boxStyle}
+            line-width={lineWidth}
+            line-stroke={lineStroke}
+            onfinish={handleFinishDrawing}
+          ></c-signature-pad-canvas>
+        </div>
+        <template if:true={savingData}>
+          <div class="slds-align--absolute-center slds-spinner_container">
+            <lightning-spinner variant="brand" alternative-text="Saving" size="large"> </lightning-spinner>
+            <span class="slds-text-heading--medium" style="margin-top: 5rem">
+              Saving the signature. Please wait...
+            </span>
+          </div>
+        </template>
+      </div>
+      <template if:true={isInFlow}>
+        <div class={footerClass}>
+          <c-signature-pad-buttons
+            save-label={saveLabel}
+            save-icon={saveIcon}
+            save-variant={saveVariant}
+            show-save={showSaveButton}
+            clear-label={clearLabel}
+            clear-icon={clearIcon}
+            save-disabled={isSaveDisabled}
+            clear-variant={clearVariant}
+            onsave={handleSave}
+            onclear={handleClear}
+            show-label-icon={showLabelAndIconButtons}
+          >
+          </c-signature-pad-buttons>
+        </div>
+      </template>
+      <template if:false={isInFlow}>
+        <div slot="footer" class={footerClass}>
+          <c-signature-pad-buttons
+            save-label={saveLabel}
+            save-icon={saveIcon}
+            save-variant={saveVariant}
+            save-disabled={isSaveDisabled}
+            clear-label={clearLabel}
+            clear-icon={clearIcon}
+            clear-variant={clearVariant}
+            onsave={handleSave}
+            onclear={handleClear}
+            show-save="true"
+            show-label-icon="true"
+          >
+          </c-signature-pad-buttons>
+        </div>
+      </template>
+    </template>
+  </lightning-card>
+</template>

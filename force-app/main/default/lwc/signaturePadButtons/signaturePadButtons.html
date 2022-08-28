@@ -1,0 +1,44 @@
+<template>
+  <template if:true={showLabelIcon}>
+    <template if:true={showSave}>
+      <lightning-button
+        variant={saveVariant}
+        label={saveLabel}
+        title={saveLabel}
+        onclick={handleSave}
+        icon-name={saveIcon}
+        disabled={saveDisabled}
+      >
+      </lightning-button>
+    </template>
+    <lightning-button
+      label={clearLabel}
+      variant={clearVariant}
+      title={clearLabel}
+      onclick={handleClear}
+      class={classClearButton}
+      icon-name={clearIcon}
+    >
+    </lightning-button>
+  </template>
+  <template if:false={showLabelIcon}>
+    <template if:true={showSave}>
+      <lightning-button-icon
+        icon-name={saveIcon}
+        variant={saveVariant}
+        alternative-text="Save"
+        onclick={handleSave}
+        disabled={saveDisabled}
+      >
+      </lightning-button-icon>
+    </template>
+    <lightning-button-icon
+      icon-name={clearIcon}
+      variant={clearVariant}
+      alternative-text="Clear"
+      onclick={handleClear}
+      class={classClearButton}
+    >
+    </lightning-button-icon>
+  </template>
+</template>

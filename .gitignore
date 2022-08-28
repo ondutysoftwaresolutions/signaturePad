@@ -1,0 +1,83 @@
+# This file is used for Git repositories to specify intentionally untracked files that Git should ignore. 
+# If you are not using git, you can delete this file. For more information see: https://git-scm.com/docs/gitignore
+# For useful gitignore templates see: https://github.com/github/gitignore
+
+# Salesforce cache
+.sf/
+.sfdx/
+.localdevserver/
+deploy-options.json
+
+# VS Code project settings
+.vscode/
+
+# History
+.history/
+
+# LWC VSCode autocomplete
+**/lwc/jsconfig.json
+
+# LWC Jest coverage reports
+coverage/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+node_modules/
+
+# Eslint cache
+.eslintcache
+
+# MacOS system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Local environment variables
+.env
+
+# Don't include the content of the results for DumpIt
+data/results/*.csv
+data/build.properties
+
+# Don't include the type of objects we use only for the scratch org creation
+force-app/main/default/flexipages/*
+force-app/main/default/globalValueSets/
+force-app/main/default/objects/*
+force-app/main/default/standardValueSets/
+
+# Ignore LWC that are not for Sales Tool
+force-app/main/default/lwc/addressFinder
+force-app/main/default/lwc/addressFinderHelper
+force-app/main/default/lwc/assetSubscriptionList
+force-app/main/default/lwc/biDisplayAlert
+force-app/main/default/lwc/biDisplayAlertDeclineReason
+force-app/main/default/lwc/biDisplayAlertDismissReason
+force-app/main/default/lwc/biDisplayAlertRemindMeOptions
+force-app/main/default/lwc/biDisplayAlertUtils
+force-app/main/default/lwc/caseCloseInOneClick
+force-app/main/default/lwc/caseRelatedList
+force-app/main/default/lwc/conCapDisplay
+force-app/main/default/lwc/conCapDisplayType
+force-app/main/default/lwc/conCapDisplayTypePurpose
+force-app/main/default/lwc/conCapDisplayTypePurposeStandard
+force-app/main/default/lwc/displayHTMLField
+force-app/main/default/lwc/displayStatementInformation
+force-app/main/default/lwc/getUpdateNickname
+force-app/main/default/lwc/getUpdateNotes
+force-app/main/default/lwc/icomOrderIntegration
+force-app/main/default/lwc/selectableTable
+force-app/main/default/lwc/vocusErrorDetails
+
+# but include some details
+!force-app/main/default/flexipages/Outbound_Calling_Lightning_Page.flexipage-meta.xml
+!force-app/main/default/objects/Pricebook2
