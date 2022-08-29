@@ -12,7 +12,7 @@
  * @version		1.0		2022-08-27		Pablo Martinez			Creation of the Class
  *
  **************************************************************************************************************/
-public with sharing class SignaturePadController {
+public without sharing class SignaturePadController {
   /*********************************************************************************************************
    * @name			saveSignature
    * @author			Pablo Martinez <Pablo@beintelligent.nz>
@@ -45,7 +45,6 @@ public with sharing class SignaturePadController {
           ContentVersion contentVersion = new ContentVersion();
           contentVersion.ContentLocation = 'S';
           contentVersion.PathOnClient = titleToSave;
-          contentVersion.Origin = 'H';
           contentVersion.Title = titleToSave;
           contentVersion.VersionData = EncodingUtil.base64Decode(request.signatureString);
           insert contentVersion;

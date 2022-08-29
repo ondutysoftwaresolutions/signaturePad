@@ -7,21 +7,26 @@
     </template>
     <template if:false={errorGetting}>
       <template if:true={showTitle}>
-        <div class="slds-grid slds-m-bottom--x-small slds-wrap" style="align-items: center">
+        <div class="slds-grid slds-m-bottom--x-small slds-wrap slds-m-left--medium" style="align-items: center">
           <template if:true={showIcon}>
             <lightning-icon icon-name={iconName} size="small"></lightning-icon>
           </template>
           <div class="slds-m-left--x-small slds-text-heading--small">{titleToShow}</div>
         </div>
       </template>
-      <div class="body">
-        <div class="slds-m-bottom--xxx-small slds-text-align--center">
+      <div
+        class="body slds-m-top--medium slds-m-left--medium slds-m-right--medium slds-align--absolute-center slds-m-bottom--xx-small"
+      >
+        <div style={boxStyle}>
           <c-signature-pad-canvas
-            box-style={boxStyle}
+            border={canvasBorder}
+            background={boxBackground}
             line-width={lineWidth}
+            has-signature={hasSignature}
             line-stroke={lineStroke}
             onfinish={handleFinishDrawing}
-          ></c-signature-pad-canvas>
+          >
+          </c-signature-pad-canvas>
         </div>
         <template if:true={savingData}>
           <div class="slds-align--absolute-center slds-spinner_container">

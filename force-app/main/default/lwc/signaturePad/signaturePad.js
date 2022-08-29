@@ -138,9 +138,9 @@ export default class SignaturePad extends LightningElement {
         if (this._recordIdToSave.indexOf(fl) !== -1) {
           this._recordIdToSave = this._recordIdToSave.replace(regex, theValue);
         }
-
-        this.errorGetting = undefined;
       });
+
+      this.errorGetting = undefined;
     } else if (error) {
       this.errorGetting = `Error getting data - ${this._getErrorFromObject(error)}`;
     }
@@ -152,16 +152,21 @@ export default class SignaturePad extends LightningElement {
   get boxStyle() {
     const width = isNaN(this.boxWidth) ? this.boxWidth : `${this.boxWidth}px`;
     const height = isNaN(this.boxHeight) ? this.boxHeight : `${this.boxHeight}px`;
+
+    return `width: ${width}; height: ${height}; position:relative`;
+  }
+
+  get canvasBorder() {
     const borderWidth = isNaN(this.boxBorderWidth) ? this.boxBorderWidth : `${this.boxBorderWidth}px`;
-    return `border: ${borderWidth} ${this.boxBorderStyle} ${this.boxBorderColor}; background: ${this.boxBackground}; width: ${width}; height: ${height};`;
+    return `${borderWidth} ${this.boxBorderStyle} ${this.boxBorderColor}`;
   }
 
   get footerClass() {
-    return `slds-text-align--${this.buttonsPosition}`;
+    return `slds-text-align--${this.buttonsPosition} slds-m-left--medium`;
   }
 
   get isSaveDisabled() {
-    return !this.hasSignature;
+    return !this.hasSignature || (this.hasSignature && this.saveSuccess);
   }
 
   get isInFlow() {
@@ -251,8 +256,8 @@ export default class SignaturePad extends LightningElement {
 
     // build the default values for all the types of components
     this.titleToShow = this._formattedTitle;
-    this._fileTitleToSave = this._formattedFileTitle || null;
-    this._recordIdToSave = this._formattedRecordIdLinkTo || this.recordId || null;
+    this._fileTitleToSave = this._formattedFileTitle || '';
+    this._recordIdToSave = this._formattedRecordIdLinkTo || this.recordId || '';
   }
 
   _showToastMessage(title, message, variant) {
@@ -267,7 +272,9 @@ export default class SignaturePad extends LightningElement {
 
   // function to get fields that are between double brackets
   _getFieldsFromString(field) {
-    return field.match(/(?<={{)(.*?)(?=}})/g);
+    const match = field.match(/(?={{)(.*?)(?=}})/g).toString();
+
+    return match.replaceAll('{', ''); //field.match(/(?<={{)(.*?)(?=}})/g);
   }
 
   _getErrorFromObject(error) {
