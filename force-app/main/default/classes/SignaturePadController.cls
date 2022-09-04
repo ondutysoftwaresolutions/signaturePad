@@ -1,6 +1,6 @@
 /*************************************************************************************************************
  * @name			SignaturePadController
- * @author			Pablo Martinez <Pablo@beintelligent.nz>
+ * @author			Pablo Martinez <ing.martinez.pablo@gmail.com>
  * @created			27 / 08 / 2022
  * @description		Class to manage the Signature Pad LWC
  * @TestClass		SignaturePadControllerTest
@@ -15,7 +15,7 @@
 public without sharing class SignaturePadController {
   /*********************************************************************************************************
    * @name			saveSignature
-   * @author			Pablo Martinez <Pablo@beintelligent.nz>
+   * @author			Pablo Martinez <ing.martinez.pablo@gmail.com>
    * @created			27 / 08 / 2022
    * @description		Method called by the signaturePad LWC to save a signature as a SF File and link it to a record if specified
    * @param			String jsonRequest : A JSON string with the object to save with the properties
@@ -85,7 +85,7 @@ public without sharing class SignaturePadController {
 
   /*********************************************************************************************************
    * @name			saveSignatureInvocable
-   * @author			Pablo Martinez <Pablo@beintelligent.nz>
+   * @author			Pablo Martinez <ing.martinez.pablo@gmail.com>
    * @created			27 / 08 / 2022
    * @description		Invocable method to be called by a flow to save the signature and link it to a record if required
    * @param			List<Request> inputs : A List of records to insert with the following properties
