@@ -1,11 +1,16 @@
 {
   "name": "signature-pad",
   "private": true,
+  "license": "MIT",
+  "author": {
+    "email": "ing.martinez.pablo@gmail.com",
+    "name": "On Duty Software Solutions"
+  },
   "version": "1.0.0",
   "description": "Lightning Web Component for a Signature Pad. Can be used in Lightning Experience and Flows. Supports Guest Users in Experience Cloud",
   "repository": {
     "type": "git",
-    "url": "https://github.com/engPabloMartinez/signaturePad"
+    "url": "https://github.com/ondutysoftwaresolutions/signaturePad"
   },
   "scripts": {
     "lint": "eslint **/{aura,lwc}/**",
