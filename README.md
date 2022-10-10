@@ -72,3 +72,31 @@ Live Demo on a Scratch Org: <a href="https://hosted-scratch.herokuapp.com/launch
   <img alt="Deploy to Salesforce"
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
 </a>
+
+## Screenshots
+
+### Inside a flow
+
+![Flow](./images/flow-sign.png)
+
+### Inside a Record Page
+
+![Record Page](./images/recordPage-sign.png)
+
+### Inside Experience Cloud - Guest User
+
+![Experience Cloud](./images/experienceCloud-sign.png)
+
+## Examples
+
+### Flow Example 1
+
+You receive the content document id back from the component and manually insert the Content Document Link
+
+![Example 1](./images/flow-usecase1.png)
+
+### Flow Example 2
+
+You receive the base64 string from the component and call the invocable method to save the signature and link. This is the approach for Guest Users in Experience Cloud.
+
+![Example 2](./images/flow-usecase2.png)
