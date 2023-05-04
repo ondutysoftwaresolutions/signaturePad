@@ -64,11 +64,11 @@ It allows Guest Users in Experience Cloud Sites to save a signature as a Salesfo
 
 ## Live Demo
 
-Live Demo on a Scratch Org: <a href="https://hosted-scratch.herokuapp.com/launch?template=https://github.com/engPabloMartinez/signaturePad">CLICK HERE</a>
+Live Demo on a Scratch Org: <a href="https://hosted-scratch.herokuapp.com/launch?template=https://github.com/ondutysoftwaresolutions/signaturePad">CLICK HERE</a>
 
 ## Installation
 
-<a href="https://githubsfdeploy.herokuapp.com?owner=engPabloMartinez&repo=signaturePad&ref=master">
+<a href="https://githubsfdeploy.herokuapp.com?owner=ondutysoftwaresolutions&repo=signaturePad&ref=master">
   <img alt="Deploy to Salesforce"
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
 </a>
