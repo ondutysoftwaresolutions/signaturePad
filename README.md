@@ -62,6 +62,11 @@ It allows Guest Users in Experience Cloud Sites to save a signature as a Salesfo
 |               Record Id                |        recordId         |                                               Automatically bind the page's record id to the component variable. This is because Experience Cloud does not populate the recordId automatically from the record Context.                                               | String  |    {!recordId}     |                           |                                                                                      |                                    lightningCommunity\_\_Page                                    |
 |              Object Name               |      objectApiName      |                                            Automatically bind the page's object name to the component variable. This is because Experience Cloud does not populate the objectApiName automatically from the object Context                                            | String  |  {!objectApiName}  |                           |                                                                                      |                                    lightningCommunity\_\_Page                                    |
 
+## Support
+If you want to support my work, feel free to buy me a coffee 😀
+
+<a href="https://www.buymeacoffee.com/ondutysoftwaresolutions"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=ondutysoftwaresolutions&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
+
 ## Live Demo
 
 Live Demo on a Scratch Org: <a href="https://hosted-scratch.herokuapp.com/launch?template=https://github.com/ondutysoftwaresolutions/signaturePad">CLICK HERE</a>
