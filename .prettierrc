@@ -12,6 +12,15 @@
     {
       "files": "*.{cmp,page,component}",
       "options": { "parser": "html" }
+    },
+    {
+      "files": "*.cls",
+      "options": { "parser": "apex" }
+    },
+    {
+      "files": "*.trigger",
+      "options": { "parser": "apex" }
     }
-  ]
+  ],
+  "plugins": ["prettier-plugin-apex"]
 }
